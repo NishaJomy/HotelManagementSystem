@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body>
+
+<nav th:replace="fragment :: page-header"></nav>
+<h1>Delete Hotel</h1>
+<form method="post" >
+    <th:block th:each = "hotel: ${hotels}">
+        <div class = "form-group">
+            <label >
+                <span th:text = "${hotel.hotelName}"></span>
+                <input type = "checkbox" name = "bookIds" th:value = "${hotel.hId}">
+            </label>
+        </div>
+    </th:block>
+    <input type = "submit" value = "Delete Hotel" class = "btn btn-danger">
+
+</form>
+
+</body>
+</html>

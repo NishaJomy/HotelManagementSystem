@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.css">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
+<link rel="stylesheet" type="text/css" href="jquery.rateyo.min.css">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body>
+<nav th:replace="fragment :: page-header"></nav>
+<div>
+    <h2>Hotel Details</h2>
+    <label>Name</label>
+    <label th:text =${hotel.hotelName}></label><br>
+    <label>Location</label>
+    <label th:text =${hotel.location}></label>
+
+</div>
+<a  th:href="@{/reviews/add}">Add review</a>
+<h1>Reviews of this Hotel</h1>
+
+</body>
+</html>
