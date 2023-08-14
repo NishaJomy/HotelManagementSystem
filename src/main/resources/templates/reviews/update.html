@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Update Review</title>
+</head>
+<body>
+<h2>Update Review</h2>
+<form th:object="${updateReview}"
+      th:action="@{/reviews/{updateReviewId}/update(updateReviewId=${updateReview.updateReviewId})}"
+      method="post">
+    <input type="hidden" th:field="*{updateReviewId}" />
+
+
+    <!-- Review fields -->
+    <label>Rating:</label>
+    <input type="number" th:field="*{rating}" />
+
+    <label>Comments:</label>
+    <textarea th:field="*{comments}"></textarea>
+
+    <div class="form-group">
+
+        <select name="hId">
+            <option th:each="hotel : ${hotels}" th:value="${hotel.hId}" th:text="${hotel.hotelName}"></option>
+        </select>
+
+    </div  >
+
+
+    <!--   <form th:action="@{/reviews/{reviewId}/update(reviewId=${review.reviewId})}" method="post">-->
+        <!--                <input type="hidden" name="_method" value="update" />-->
+        <!--                <button type="submit" class="btn btn-danger">Update Review</button>-->
+        <!--            </form>-->
+
+    <!-- Add any other fields from the UpdateReview entity as needed -->
+
+    <button type="submit">Update Review</button>
+</form>
+</body>
+</html>

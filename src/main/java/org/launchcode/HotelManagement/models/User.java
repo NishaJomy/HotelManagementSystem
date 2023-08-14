@@ -2,23 +2,20 @@ package org.launchcode.HotelManagement.models;
 
 import jakarta.persistence.*;
 
+
 import java.util.List;
 
 @Entity
-@Table(name="USER")
-public class User {
+@Table(name="users")
+public class User  {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
-    private String name;
-    @Column(unique = true)
-    private String email;
+    private Long id;
+    private String username;
     private String password;
-    private String role;
-    private boolean enabled;
-    private String imageUrl;
-    @Column(length = 500)
-    private String about;
+    private String fullname;
+
     @OneToMany(mappedBy = "user")
     private List<Review> reviews;
 
@@ -26,28 +23,34 @@ public class User {
         super();
     }
 
-    public int getId() {
+    public User(Long id, String username, String password, String fullname, List<Review> reviews) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.fullname = fullname;
+        this.reviews = reviews;
+    }
+
+    public User(String username, String password, String fullname) {
+        this.username = username;
+        this.password = password;
+        this.fullname = fullname;
+    }
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getUsername() {
+        return username;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {
@@ -58,36 +61,12 @@ public class User {
         this.password = password;
     }
 
-    public String getRole() {
-        return role;
+    public String getFullname() {
+        return fullname;
     }
 
-    public void setRole(String role) {
-        this.role = role;
-    }
-
-    public boolean isEnabled() {
-        return enabled;
-    }
-
-    public void setEnabled(boolean enabled) {
-        this.enabled = enabled;
-    }
-
-    public String getImageUrl() {
-        return imageUrl;
-    }
-
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
-    }
-
-    public String getAbout() {
-        return about;
-    }
-
-    public void setAbout(String about) {
-        this.about = about;
+    public void setFullname(String fullname) {
+        this.fullname = fullname;
     }
 
     public List<Review> getReviews() {
@@ -95,18 +74,6 @@ public class User {
     }
 
     public void setReviews(List<Review> reviews) {
-        this.reviews = reviews;
-    }
-
-    public User(int id, String name, String email, String password, String role, boolean enabled, String imageUrl, String about, List<Review> reviews) {
-        this.id = id;
-        this.name = name;
-        this.email = email;
-        this.password = password;
-        this.role = role;
-        this.enabled = enabled;
-        this.imageUrl = imageUrl;
-        this.about = about;
         this.reviews = reviews;
     }
 }

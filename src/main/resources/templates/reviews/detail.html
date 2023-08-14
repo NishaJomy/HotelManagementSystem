@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Review Detail</title>
+</head>
+<body>
+<h2>Review Detail</h2>
+<p>Rating: <span th:text="${review.rating}"></span></p>
+<p>Comments: <span th:text="${review.comments}"></span></p>
+
+<div class="form-group">
+
+    <select name="hId">
+        <option th:each="hotel : ${hotels}" th:value="${hotel.hId}" th:text="${hotel.hotelName}"></option>
+    </select>
+
+</div  >
+
+
+<form th:action="@{/reviews/{reviewId}/delete(reviewId=${review.reviewId})}" method="post">
+    <input type="hidden" name="_method" value="delete" />
+    <button type="submit" class="btn btn-danger" >Delete Review</button>
+</form>
+
+
+<!-- Add other review details as needed -->
+</body>
+</html>

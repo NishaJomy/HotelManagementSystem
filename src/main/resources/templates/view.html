@@ -1,13 +1,8 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org/">
+
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.css">
-
-<!-- Latest compiled and minified JavaScript -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
-<link rel="stylesheet" type="text/css" href="jquery.rateyo.min.css">
 
 <head>
     <meta charset="UTF-8">
@@ -16,16 +11,33 @@
 </head>
 <body>
 <nav th:replace="fragment :: page-header"></nav>
+
 <div>
     <h2>Hotel Details</h2>
     <label>Name</label>
     <label th:text =${hotel.hotelName}></label><br>
     <label>Location</label>
     <label th:text =${hotel.location}></label>
+</div>
+
+<a th:href="@{/reviews/add}">Add Review</a>
+
+
+<h2>Reviews</h2>
+<div  th:each="review : ${reviews}">
+    <div class="container p-3 my-3 bg-secondary text-white">
+        User:<span th:text="${review.user.fullname}"></span><br>
+        Rating: <span th:text="${review.rating}"></span><br>
+        Comment: <span th:text="${review.comments}"></span>
+
+
+    <div style="padding-left:1000px;">
+         <span  th:text="${#dates.format(#dates.createNow(), 'yyyy-MM-dd')}"></span>
+    </div>
+
+    </div>
+
 
 </div>
-<a  th:href="@{/reviews/add}">Add review</a>
-<h1>Reviews of this Hotel</h1>
-
 </body>
 </html>

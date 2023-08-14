@@ -1,6 +1,7 @@
 package org.launchcode.HotelManagement.controllers;
 
 import org.launchcode.HotelManagement.models.Hotel;
+import org.launchcode.HotelManagement.models.Review;
 import org.launchcode.HotelManagement.repository.HotelRepository;
 import org.launchcode.HotelManagement.repository.ReviewRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -24,12 +26,8 @@ public class HotelController {
     ReviewRepository reviewRepository;
 
 
-    @GetMapping("")
-    public String displayHome(Model model) {
 
-        return "home";
-    }
-    @GetMapping("home")
+    @GetMapping("")
     public String displayHotels(Model model) {
         Iterable<Hotel> hotels;
         hotels = hotelRepository.findAll();
@@ -56,9 +54,11 @@ public class HotelController {
         Optional<Hotel> result = hotelRepository.findById(id);
         if (result.isPresent()) {
             Hotel hotel= result.get();
-
             model.addAttribute("hotel", hotel);
+                List<Review> reviews = reviewRepository.findByHotel(hotel);
+            model.addAttribute("reviews", reviews);
         }
+
         return "view";
     }
 
@@ -68,11 +68,7 @@ public class HotelController {
         return "delete";
     }
 
-    @GetMapping("/register")
-    public String displayRegistrationForm(Model model) {
 
-        return "signUp";
-    }
 
 
 }
